@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.entry {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.entry input {
+  width: 150px;
+  height: 30px;
+  margin: 10px;
+  font-size: 15px;
+}
+.entry .memo {
+  width: 300px;
+  height: 30px;
+  margin: 10px;
+  font-size: 15px;
+}
