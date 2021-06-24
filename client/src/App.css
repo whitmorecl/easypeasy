@@ -31,9 +31,14 @@
 }
 
 .card {
-  width:1000px;
+  width: 550px;
   height: 20px;
   border: 2px solid black;
-  border-radius: 5px;
   margin: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: left;
+  padding: 5px;
+
 }

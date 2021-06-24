@@ -48,7 +48,7 @@ const submitEntry = () => {
       <input type = "text" name = "category" />
 
       <label>Memo</label>
-      <input type = "text" name = "memo" className =  "memo" onChange= { (e)=> {
+      <input type = "text" name = "memo" onChange= { (e)=> {
         setMemo(e.target.value)
       }}/>
 
@@ -62,10 +62,16 @@ const submitEntry = () => {
     </div>
 
     <div className = 'entryList'>
-    {entryList.map((val) => {
+      {entryList.map((val) => {
         return (
-        <div className= 'card'>Date:{val.date} | Memo: {val.memo} | Amount: {val.amount}</div>
-    )})}
+        <div className= 'card'>
+          Date:{val.date} 
+          | Memo: {val.memo} 
+          | Amount: {val.amount}
+
+        </div>
+        );
+      })}
 
     </div>
 
