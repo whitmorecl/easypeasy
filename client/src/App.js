@@ -17,13 +17,17 @@ Axios.get('http://localhost:3001/api/get').then((response) => {
 
 
 const submitEntry = () => {
+
   Axios.post('http://localhost:3001/api/insert', {
     date: date, 
     memo: memo,
     amount: amount
-  }).then(() => {
-    alert("successful insert");
   })
+
+    setEntryList([
+      ...entryList, 
+      {date: date, memo: memo, amount: amount}
+    ]);
 };
   
   return (
@@ -55,13 +59,16 @@ const submitEntry = () => {
 
       <button onClick= {submitEntry}>Submit</button>
 
-      {entryList.map((val) => {
-        return <h1>Date: {val.date} | Memo: {val.memo} | Amount: {val.amount}</h1>
+    </div>
 
-      })}
+    <div className = 'entryList'>
+    {entryList.map((val) => {
+        return (
+        <div className= 'card'>Date:{val.date} | Memo: {val.memo} | Amount: {val.amount}</div>
+    )})}
 
     </div>
-    
+
     </div>
   );
 }
