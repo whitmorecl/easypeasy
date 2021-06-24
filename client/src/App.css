@@ -15,6 +15,7 @@
   height: 30px;
   margin: 10px;
   font-size: 15px;
+  background-color:silver;
 }
 .entry .memo {
   width: 300px;
@@ -40,5 +41,6 @@
   align-items: baseline;
   justify-content: left;
   padding: 5px;
+  background-color:rgb(245, 132, 132);
 
 }
