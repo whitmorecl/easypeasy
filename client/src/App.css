@@ -6,7 +6,7 @@
 .entry {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
 }
 
@@ -27,8 +27,11 @@
 .entryList {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
-  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  background-color:rgb(132, 149, 245);
+  width: stretch;
+  padding: 10px;
 }
 
 .card {
