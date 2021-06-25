@@ -26,12 +26,14 @@ app.get("/api/get", (req, res) => {
 app.post("/api/insert", (req, res) => {
 
     const date = req.body.date;
+    const accountId = req.body.accountId;
+    const contactId = req.body.contactId;
     const memo = req.body.memo;
     const amount = req.body.amount;
 
 const sqlInsert = 
-"INSERT INTO general_ledger (date, memo, amount) VALUES (?, ?, ?)"; 
-    db.query(sqlInsert, [date, memo, amount], (err, result) => {
+"INSERT INTO general_ledger (date, accountId, contactId, memo, amount) VALUES (?, ?, ?, ?, ?)"; 
+    db.query(sqlInsert, [date, accountId, contactId, memo, amount], (err, result) => {
         console.log(result);
     });
 });

@@ -5,6 +5,8 @@ import Axios from 'axios';
 function App() {
 
 const [date, setDate] = useState('');
+const [accountId, setAccountId] = useState('');
+const [contactId, setContactId] = useState('');
 const [memo, setMemo] = useState('');
 const [amount, setAmount] = useState('');
 const [entryList, setEntryList] = useState([]);
@@ -20,13 +22,15 @@ const submitEntry = () => {
 
   Axios.post('http://localhost:3001/api/insert', {
     date: date, 
+    accountId: accountId,
+    contactId: contactId,
     memo: memo,
     amount: amount
   })
 
     setEntryList([
       ...entryList, 
-      {date: date, memo: memo, amount: amount}
+      {date: date, accountId:accountId, contactId:contactId, memo: memo, amount: amount}
     ]);
 };
   
@@ -42,10 +46,14 @@ const submitEntry = () => {
       }}/>
 
       <label>Contact</label>
-      <input type = "text" name = "contact" />
+      <input type = "text" name = "contactId" onChange= { (e)=> {
+        setContactId(e.target.value)
+      }}/>
 
       <label>Category</label>
-      <input type = "text" name = "category" />
+      <input type = "text" name = "accountId" onChange= { (e)=> {
+        setAccountId(e.target.value)
+      }}/>
 
       <label>Memo</label>
       <input type = "text" name = "memo" onChange= { (e)=> {
@@ -66,6 +74,8 @@ const submitEntry = () => {
         return (
         <div className= 'card'>
           Date:{val.date} 
+          | Contact: {val.contactId} 
+          | Category: {val.accountId} 
           | Memo: {val.memo} 
           | Amount: {val.amount}
 
