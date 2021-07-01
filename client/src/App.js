@@ -21,12 +21,12 @@ Axios.get('http://localhost:3001/api/get').then((response) => {
 const submitEntry = () => {
 
   Axios.post('http://localhost:3001/api/insert', {
-    date: date, 
-    accountId: accountId,
-    contactId: contactId,
-    memo: memo,
-    amount: amount
-  })
+    date, 
+    accountId,
+    contactId,
+    memo,
+    amount
+  });
 
     setEntryList([
       ...entryList, 
