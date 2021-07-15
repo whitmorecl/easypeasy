@@ -90,15 +90,34 @@ function App() {
 				<button onClick={submitEntry}>Submit</button>
 			</div>
 
-			<div className="entryList">
-				{entryList.map((val) => {
-					return (
-						<div className="card">
-							Date:{val.date}| Contact: {val.contactId}| Category:{" "}
-							{val.accountId}| Memo: {val.memo}| Amount: {val.amount}
-						</div>
-					);
-				})}
+			<div className="middleSection">
+				<div className="entryList">
+					{entryList.map((val) => {
+						return (
+							<div className="card">
+								Date:{val.date}| Contact: {val.contactId}| Category:{" "}
+								{val.accountId}| Memo: {val.memo}| Amount: {val.amount}
+							</div>
+						);
+					})}
+				</div>
+
+				<div className="bucketList">
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+					<div className="bucket">Bucket</div>
+				</div>
 			</div>
 		</div>
 	);
