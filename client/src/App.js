@@ -1,35 +1,74 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Axios from "axios";
 
 function App() {
 	const [date, setDate] = useState("");
-	const [accountId, setAccountId] = useState("");
+	const [categoryId, setcategoryId] = useState("");
 	const [contactId, setContactId] = useState("");
 	const [memo, setMemo] = useState("");
 	const [amount, setAmount] = useState("");
-	const [entryList, setEntryList] = useState([]);
+	const [transactionList, settransactionList] = useState([]);
+
+	useEffect(() => {
+		const cards = document.querySelectorAll(".card");
+		const buckets = document.querySelectorAll(".bucket");
+
+		cards.forEach((card) => {
+			card.addEventListener("dragstart", (e) => {
+				card.classList.add("dragging");
+				console.log("drag start");
+				console.log(e.target);
+			});
+			card.addEventListener("dragend", () => {
+				card.classList.remove("dragging");
+				console.log("drag end");
+			});
+		});
+
+		buckets.forEach((bucket) => {
+			bucket.addEventListener("dragover", (e) => {
+				e.preventDefault();
+				console.log("drag over");
+			});
+			bucket.addEventListener("dragenter", (e) => {
+				e.preventDefault();
+				bucket.classList.add("hovered");
+				console.log(e.target);
+			});
+			bucket.addEventListener("dragleave", (e) => {
+				e.preventDefault();
+				bucket.classList.remove("hovered");
+				console.log("drag leave");
+			});
+			bucket.addEventListener("drop", (e) => {
+				e.preventDefault();
+				bucket.classList.remove("hovered");
+				console.log("drop");
+			});
+		});
+	}, [transactionList]);
 
 	useEffect(() => {
 		Axios.get("http://localhost:3001/api/get").then((response) => {
-			setEntryList(response.data);
+			settransactionList(response.data);
 		});
 	}, []);
 
-	const submitEntry = () => {
+	const submittransaction = () => {
 		Axios.post("http://localhost:3001/api/insert", {
 			date,
-			accountId,
+			categoryId,
 			contactId,
 			memo,
 			amount,
 		});
 
-		setEntryList([
-			...entryList,
+		settransactionList([
+			...transactionList,
 			{
 				date: date,
-				accountId: accountId,
+				categoryId: categoryId,
 				contactId: contactId,
 				memo: memo,
 				amount: amount,
@@ -41,7 +80,7 @@ function App() {
 		<div className="App">
 			<h1>EASY PEASY ACCOUNTING SQUEEZY</h1>
 
-			<div className="entry">
+			<div className="transaction">
 				<label>Date</label>
 				<input
 					type="text"
@@ -63,9 +102,9 @@ function App() {
 				<label>Category</label>
 				<input
 					type="text"
-					name="accountId"
+					name="categoryId"
 					onChange={(e) => {
-						setAccountId(e.target.value);
+						setcategoryId(e.target.value);
 					}}
 				/>
 
@@ -87,33 +126,22 @@ function App() {
 					}}
 				/>
 
-				<button onClick={submitEntry}>Submit</button>
+				<button onClick={submittransaction}>Submit</button>
 			</div>
 
 			<div className="middleSection">
-				<div className="entryList">
-					{entryList.map((val) => {
+				<div className="transactionList">
+					{transactionList.map((val) => {
 						return (
-							<div className="card">
-								Date:{val.date}| Contact: {val.contactId}| Category:{" "}
-								{val.accountId}| Memo: {val.memo}| Amount: {val.amount}
+							<div className="card" draggable="true">
+								Date:{val.date}| Memo: {val.memo}| Amount: {val.amount}
 							</div>
 						);
 					})}
 				</div>
 
 				<div className="bucketList">
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
-					<div className="bucket">Bucket</div>
+					<div className="bucket">Office Expense</div>
 					<div className="bucket">Bucket</div>
 					<div className="bucket">Bucket</div>
 					<div className="bucket">Bucket</div>
